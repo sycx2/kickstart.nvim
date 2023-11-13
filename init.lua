@@ -45,6 +45,7 @@ P.S. You can delete this when you're done too. It's your config now :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -237,6 +238,12 @@ require('lazy').setup({
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
+-- custom commands
+local function find_files_in_neovim_config()
+  require('telescope.builtin').find_files({cwd = vim.fn.stdpath('config') })
+end
+vim.keymap.set('n', '<leader>en', find_files_in_neovim_config, { noremap = true, silent = true, desc = 'Find Neovim Config File' })
+
 -- Set highlight on search
 vim.o.hlsearch = false
 
@@ -346,7 +353,7 @@ local function live_grep_git_root()
   local git_root = find_git_root()
   if git_root then
     require('telescope.builtin').live_grep({
-      search_dirs = {git_root},
+      search_dirs = { git_root },
     })
   end
 end
@@ -656,3 +663,4 @@ require('lspconfig').ruff_lsp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+

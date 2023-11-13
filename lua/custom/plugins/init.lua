@@ -21,6 +21,7 @@ return {
         -- formats treesitter-injected code. Basically, this makes
         -- conform.nvim format python codeblocks inside a markdown file.
         markdown = { "inject" },
+        json = { "biome" },
       },
       -- enable format-on-save
       format_on_save = {
@@ -50,3 +51,4 @@ return {
     },
   },
 }
+
